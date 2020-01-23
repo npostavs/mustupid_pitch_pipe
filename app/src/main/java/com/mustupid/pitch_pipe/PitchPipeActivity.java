@@ -9,6 +9,7 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 
 public class PitchPipeActivity extends AppCompatActivity {
@@ -34,7 +35,6 @@ public class PitchPipeActivity extends AppCompatActivity {
         ID_TO_NOTE.put(R.id.a_flat_button, Note.Ab);
     }
 
-    private final Button[] mNoteButtons = new Button[NUM_NOTES];
     private int mPitch = DEFAULT_PITCH;
     private SharedPreferences mPreferences;
     private PitchPipe mPitchPipe;
@@ -64,25 +64,16 @@ public class PitchPipeActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    /* TODO */
     private void setUpNoteButtons() {
         for (int i = 0; i < NUM_NOTES; i++) {
             final int id = ID_TO_NOTE.keyAt(i);
-            mNoteButtons[i] = findViewById(id);
-            mNoteButtons[i].setOnTouchListener(new Button.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            return !mPitchPipe.play(ID_TO_NOTE.get(id).getFrequency() * mPitch);
-                        case MotionEvent.ACTION_UP:
-                        case MotionEvent.ACTION_CANCEL:
-                            mPitchPipe.stop();
-                            return false;
-                        default:
-                            return false;
-                    }
+            final CompoundButton noteCButton = findViewById(id);
+            noteCButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked)
+                        mPitchPipe.play(ID_TO_NOTE.get(id).getFrequency() * mPitch);
+                    else
+                        mPitchPipe.stop();
                 }
             });
         }

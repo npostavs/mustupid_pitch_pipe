@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
@@ -7,48 +8,56 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <Button
+
+        <ToggleButton
             android:id="@+id/c_button"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_C" />
-        <Button
+            android:layout_weight="1"
+            android:textOff="@string/note_C"
+            android:textOn="@string/note_C" />
+        <ToggleButton
             android:id="@+id/d_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_D" />
-        <Button
+            android:textOff="@string/note_D"
+            android:textOn="@string/note_D" />
+        <ToggleButton
             android:id="@+id/e_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_E" />
-        <Button
-           android:id="@+id/f_button"
-           android:layout_weight="1"
+            android:textOff="@string/note_E"
+            android:textOn="@string/note_E" />
+        <ToggleButton
+            android:id="@+id/f_button"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-           android:text="@string/note_F" />
-        <Button
+            android:textOff="@string/note_F"
+            android:textOn="@string/note_F" />
+        <ToggleButton
             android:id="@+id/g_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_G" />
-        <Button
+            android:textOff="@string/note_G"
+            android:textOn="@string/note_G" />
+        <ToggleButton
             android:id="@+id/a_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_A" />
-        <Button
+            android:textOff="@string/note_A"
+            android:textOn="@string/note_A" />
+        <ToggleButton
             android:id="@+id/b_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_B" />
+            android:textOff="@string/note_B"
+            android:textOn="@string/note_B" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -58,40 +67,45 @@
             android:layout_weight="0.5"
             android:layout_height="0dp"
             android:layout_width="wrap_content" />
-        <Button
+        <ToggleButton
             android:id="@+id/c_sharp_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_Db" />
-        <Button
+            android:textOff="@string/note_Db"
+            android:textOn="@string/note_Db" />
+        <ToggleButton
             android:id="@+id/e_flat_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_Eb" />
+            android:textOff="@string/note_Eb"
+            android:textOn="@string/note_Eb" />
         <Space
             android:layout_weight="1"
             android:layout_height="0dp"
             android:layout_width="wrap_content" />
-        <Button
+        <ToggleButton
             android:id="@+id/f_sharp_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_Gb" />
-        <Button
+            android:textOff="@string/note_Gb"
+            android:textOn="@string/note_Gb" />
+        <ToggleButton
             android:id="@+id/a_flat_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_Ab" />
-        <Button
+            android:textOff="@string/note_Ab"
+            android:textOn="@string/note_Ab" />
+        <ToggleButton
             android:id="@+id/b_flat_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="@string/note_Bb" />
+            android:textOff="@string/note_Bb"
+            android:textOn="@string/note_Bb" />
         <Space
             android:layout_weight="0.5"
             android:layout_height="0dp"

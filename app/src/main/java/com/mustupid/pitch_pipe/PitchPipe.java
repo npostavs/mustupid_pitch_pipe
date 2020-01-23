@@ -19,9 +19,9 @@ class PitchPipe {
     }
 
     boolean play(double frequency) {
+        mFrequency = frequency;
         if (mRunning)
             return false;
-        mFrequency = frequency;
         mTouching = true;
         PitchGenerator pitchGenerator = new PitchGenerator();
         mExecutor.execute(pitchGenerator);
