@@ -17,23 +17,6 @@ public class PitchPipeActivity extends AppCompatActivity {
     private static final int MIN_PITCH = 400;
     private static final int MAX_PITCH = 470;
     private static final int DEFAULT_PITCH = 440;
-    private static final int NUM_NOTES = 12;
-    private static final SparseArray<Note> ID_TO_NOTE = new SparseArray<>();
-
-    static {
-        ID_TO_NOTE.put(R.id.a_button, Note.A);
-        ID_TO_NOTE.put(R.id.b_flat_button, Note.Bb);
-        ID_TO_NOTE.put(R.id.b_button, Note.B);
-        ID_TO_NOTE.put(R.id.c_button, Note.C);
-        ID_TO_NOTE.put(R.id.c_sharp_button, Note.Db);
-        ID_TO_NOTE.put(R.id.d_button, Note.D);
-        ID_TO_NOTE.put(R.id.e_flat_button, Note.Eb);
-        ID_TO_NOTE.put(R.id.e_button, Note.E);
-        ID_TO_NOTE.put(R.id.f_button, Note.F);
-        ID_TO_NOTE.put(R.id.f_sharp_button, Note.Gb);
-        ID_TO_NOTE.put(R.id.g_button, Note.G);
-        ID_TO_NOTE.put(R.id.a_flat_button, Note.Ab);
-    }
 
     private int mPitch = DEFAULT_PITCH;
     private SharedPreferences mPreferences;
@@ -65,34 +48,28 @@ public class PitchPipeActivity extends AppCompatActivity {
     }
 
     private void setUpNoteButtons() {
-        for (int i = 0; i < NUM_NOTES; i++) {
-            final int id = ID_TO_NOTE.keyAt(i);
-            final CompoundButton noteCButton = findViewById(id);
-            noteCButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked)
-                        mPitchPipe.play(ID_TO_NOTE.get(id).getFrequency() * mPitch);
-                    else
-                        mPitchPipe.stop();
-                }
-            });
-        }
+        final CompoundButton noteCButton = findViewById(R.id.a_button);
+        noteCButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    mPitchPipe.play(Note.A.getFrequency() * mPitch);
+                else
+                    mPitchPipe.stop();
+            }
+        });
     }
 
     private void setUpPitchPicker() {
         NumberPicker pitchPicker = findViewById(R.id.pitch_picker);
-        pitchPicker.setMaxValue(MAX_PITCH - MIN_PITCH);
-        String[] string_array = new String[MAX_PITCH - MIN_PITCH + 1];
-        for (int i = 0; i <= MAX_PITCH - MIN_PITCH; i++) {
-            string_array[i] = Integer.toString(MIN_PITCH + i);
-        }
-        pitchPicker.setDisplayedValues(string_array);
+        pitchPicker.setMinValue(MIN_PITCH);
+        pitchPicker.setMaxValue(MAX_PITCH);
+        pitchPicker.setValue(mPitch);
         pitchPicker.setWrapSelectorWheel(false);
-        pitchPicker.setValue(mPitch - MIN_PITCH);
         pitchPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                mPitch = newVal + MIN_PITCH;
+                mPitch = newVal;
+                mPitchPipe.setPitch(Note.A.getFrequency() * mPitch);
             }
         });
     }

@@ -18,6 +18,9 @@ class PitchPipe {
         mExecutor = Executors.newSingleThreadExecutor();
     }
 
+    void setPitch(double frequency) {
+        mFrequency = frequency;
+    }
     boolean play(double frequency) {
         mFrequency = frequency;
         if (mRunning)
